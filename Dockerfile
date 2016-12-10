@@ -17,6 +17,16 @@ RUN mkdir -p /run/nginx && \
     tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 && \
     rm "dokuwiki-$DOKUWIKI_VERSION.tgz" 
 
+# add plugin
+RUN curl -O -L "https://github.com/leibler/dokuwiki-plugin-todo/archive/stable.zip" && \
+    unzip stable.zip -d /var/www/lib/plugins/ && \
+    mv /var/www/lib/plugins/dokuwiki-plugin-todo-stable /var/www/lib/plugins/todo && \
+    rm -rf stable.zip && \
+    curl -O -L " https://github.com/arapat/markdowku/archive/master.zip" && \
+    unzip master.zip -d /var/www/lib/plugins/ && \
+    mv /var/www/lib/plugins/markdowku-master /var/www/lib/plugins/markdowku && \
+    rm -rf master.zip
+
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD supervisord.conf /etc/supervisord.conf
 ADD start.sh /start.sh

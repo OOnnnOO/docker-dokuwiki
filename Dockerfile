@@ -8,7 +8,7 @@ ENV DOKUWIKI_VERSION 2016-06-26a
 ENV MD5_CHECKSUM 9b9ad79421a1bdad9c133e859140f3f2
 
 RUN apk --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ add \
-    php7 php7-fpm php7-gd php7-session php7-xml nginx supervisor curl tar
+    php7 php7-fpm php7-gd php7-session php7-xml nginx supervisor curl tar unzip
 
 RUN mkdir -p /run/nginx && \
     mkdir -p /var/www /var/www/wiki && \
@@ -19,12 +19,12 @@ RUN mkdir -p /run/nginx && \
 
 # add plugin
 RUN curl -O -L "https://github.com/leibler/dokuwiki-plugin-todo/archive/stable.zip" && \
-    unzip stable.zip -d /var/www/lib/plugins/ && \
-    mv /var/www/lib/plugins/dokuwiki-plugin-todo-stable /var/www/lib/plugins/todo && \
+    unzip stable.zip -d /var/www/wiki/lib/plugins/ && \
+    mv /var/www/wiki/lib/plugins/dokuwiki-plugin-todo-stable /var/www/wiki/lib/plugins/todo && \
     rm -rf stable.zip && \
-    curl -O -L " https://github.com/arapat/markdowku/archive/master.zip" && \
-    unzip master.zip -d /var/www/lib/plugins/ && \
-    mv /var/www/lib/plugins/markdowku-master /var/www/lib/plugins/markdowku && \
+    curl -O -L "https://github.com/arapat/markdowku/archive/master.zip" && \
+    unzip master.zip -d /var/www/wiki/lib/plugins/ && \
+    mv /var/www/wiki/lib/plugins/markdowku-master /var/www/wiki/lib/plugins/markdowku && \
     rm -rf master.zip
 
 ADD nginx.conf /etc/nginx/nginx.conf

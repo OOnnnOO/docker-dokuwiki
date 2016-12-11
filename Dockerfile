@@ -26,7 +26,7 @@ RUN curl -O -L "https://github.com/arapat/markdowku/archive/master.zip" && \
     rm -rf master.zip && \
     curl -O -L "https://github.com/splitbrain/dokuwiki-plugin-smtp/archive/master.zip" && \
     unzip master.zip -d /var/www/wiki/lib/plugins/ && \
-    mv /var/www/wiki/lib/plugins/mdokuwiki-plugin-smtp-master /var/www/wiki/lib/plugins/smtp && \
+    mv /var/www/wiki/lib/plugins/dokuwiki-plugin-smtp-master /var/www/wiki/lib/plugins/smtp && \
     rm -rf master.zip
 
 ADD nginx.conf /etc/nginx/nginx.conf

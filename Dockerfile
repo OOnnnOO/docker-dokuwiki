@@ -17,10 +17,16 @@ RUN mkdir -p /run/nginx && \
     tar -xzf "dokuwiki-$DOKUWIKI_VERSION.tgz" --strip 1 && \
     rm "dokuwiki-$DOKUWIKI_VERSION.tgz" 
 
-# add plugin
+# add plugin to support
+# markdown
+# smtp
 RUN curl -O -L "https://github.com/arapat/markdowku/archive/master.zip" && \
     unzip master.zip -d /var/www/wiki/lib/plugins/ && \
     mv /var/www/wiki/lib/plugins/markdowku-master /var/www/wiki/lib/plugins/markdowku && \
+    rm -rf master.zip && \
+    curl -O -L "https://github.com/splitbrain/dokuwiki-plugin-smtp/archive/master.zip" && \
+    unzip master.zip -d /var/www/wiki/lib/plugins/ && \
+    mv /var/www/wiki/lib/plugins/mdokuwiki-plugin-smtp-master /var/www/wiki/lib/plugins/smtp && \
     rm -rf master.zip
 
 ADD nginx.conf /etc/nginx/nginx.conf

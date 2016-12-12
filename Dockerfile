@@ -18,13 +18,8 @@ RUN mkdir -p /run/nginx && \
     rm "dokuwiki-$DOKUWIKI_VERSION.tgz" 
 
 # add plugin to support
-# markdown
 # smtp
-RUN curl -O -L "https://github.com/naokij/dokuwiki-plugin-markdownextra/archive/master.zip" && \
-    unzip master.zip -d /var/www/wiki/lib/plugins/ && \
-    mv /var/www/wiki/lib/plugins/dokuwiki-plugin-markdownextra-master /var/www/wiki/lib/plugins/markdownextra && \
-    rm -rf master.zip && \
-    curl -O -L "https://github.com/splitbrain/dokuwiki-plugin-smtp/archive/master.zip" && \
+RUN curl -O -L "https://github.com/splitbrain/dokuwiki-plugin-smtp/archive/master.zip" && \
     unzip master.zip -d /var/www/wiki/lib/plugins/ && \
     mv /var/www/wiki/lib/plugins/dokuwiki-plugin-smtp-master /var/www/wiki/lib/plugins/smtp && \
     rm -rf master.zip

@@ -20,9 +20,9 @@ RUN mkdir -p /run/nginx && \
 # add plugin to support
 # markdown
 # smtp
-RUN curl -O -L "https://github.com/arapat/markdowku/archive/master.zip" && \
+RUN curl -O -L "https://github.com/naokij/dokuwiki-plugin-markdownextra/archive/master.zip" && \
     unzip master.zip -d /var/www/wiki/lib/plugins/ && \
-    mv /var/www/wiki/lib/plugins/markdowku-master /var/www/wiki/lib/plugins/markdowku && \
+    mv /var/www/wiki/lib/plugins/dokuwiki-plugin-markdownextra-master /var/www/wiki/lib/plugins/markdownextra && \
     rm -rf master.zip && \
     curl -O -L "https://github.com/splitbrain/dokuwiki-plugin-smtp/archive/master.zip" && \
     unzip master.zip -d /var/www/wiki/lib/plugins/ && \
